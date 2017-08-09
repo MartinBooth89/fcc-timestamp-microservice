@@ -15,8 +15,9 @@ $(function() {
 
   $('form').submit(function(event) {
     event.preventDefault();
-    var time = $('input').val();
-    $.get('/api/' + encodeURI(time), function(response) {
+    var time = encodeURI($('input').val());
+    $.get('/api/' + time, function(response) {
+      $('#request').html(`GET: https://${window.location.hostname}/api/${time}`)
       $('#json').html(JSON.stringify(response));
       $('#unix').html(response.unix);
       $('#natural').html(response.natural);
